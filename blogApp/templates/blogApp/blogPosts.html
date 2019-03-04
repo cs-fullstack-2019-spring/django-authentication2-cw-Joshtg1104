@@ -1,0 +1,31 @@
+{% extends 'blogApp/index.html' %}
+
+{% block header %}
+{{ user.username }} Blog
+{% endblock header %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+Hi {{ user.username }}!
+<p><a href="{% url 'logout' %}">logout</a></p>
+{% else %}
+<p>You are not logged in</p>
+<a href="{% url 'login' %}">login</a>
+{% endif %}
+<hr/>
+
+{% if entries %}
+
+{% for eachItem in entries %}
+<h2>{{ eachItem.blog_title }}</h2>
+<p>{{ eachItem.blog_entry }}</p>
+
+
+{% endfor %}
+
+{% else %}
+<p>No Courses Available.</p>
+{% endif %}
+
+{% endblock %}
